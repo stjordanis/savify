@@ -57,17 +57,17 @@ To find out how to do this find a tutorial online for your specific operating sy
 - Clone the repo -> `git clone https://github.com/LaurenceRawlings/savify.git`
 - From the command line navigate to the 'savify' directory -> `cd savify`
 - Make a virtual environment -> `python -m venv venv`
-- Activate the virtual environment -> `\venv\Scripts\activate.bat`
+- Activate the virtual environment -> `venv\Scripts\activate.bat`
 - Install the requirements -> `pip install -r requirements.txt`
 
 ## Running the app
 
-- Activate the virtual environment -> `\venv\Scripts\activate.bat`
+- Activate the virtual environment -> `venv\Scripts\activate.bat`
 - Run the python module from the savify directory -> `python -m savify`
 
 ## Building an executable
 
-- Activate the virtual environment -> `\venv\Scripts\activate.bat`
+- Activate the virtual environment -> `venv\Scripts\activate.bat`
 - Install pyInstaller -> `pip install pyinstaller`
 - Create the executable `pyinstaller --onefile --name Savify --icon images\savify-logo.ico savify\__main__.py`
 - Generated executable will be placed in the 'dist' directory
