@@ -1,0 +1,8 @@
+requests
+twine
+pytest
+coverage
+pytest-cov
+ffmpy
+spotipy
+youtube-dl==2020.3.24
