@@ -11,7 +11,7 @@ from .downloader import check_ffmpeg
 from . import utils
 
 
-class DownloadManager:
+class Savify:
     def __init__(self, quality, download_format, output_path, tracks=[]):
         self.quality = quality
         self.download_format = download_format

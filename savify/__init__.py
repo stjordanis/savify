@@ -51,7 +51,7 @@ import sys
 import datetime
 
 from . import spotify
-from .download_manager import DownloadManager
+from .Savify import Savify
 
 INFO = f'Savify version {__version__} Copyright (c) 2018-{datetime.datetime.now().year} {__author__}\n' \
        f'Usage: Savify.py -q query [options]\nFor help:\n\t-h\t--help\tshow available options'
@@ -162,7 +162,7 @@ def main(argv=None):
 
 
 def run(query, query_type='track', quality='0', download_format='mp3', output_path='./Savify Downloads/'):
-    dm = DownloadManager(quality, download_format, output_path)
+    dm = Savify(quality, download_format, output_path)
     if query_type == 'track':
         dm.add_track(spotify.search(query, query_type='track'))
     elif query_type == 'album':

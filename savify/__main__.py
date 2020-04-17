@@ -1,10 +1,3 @@
-"""
-Main routine of Savify.
-
-:Copyright: © 2020, Laurence Rawlings.
-:License: BSD (see /LICENSE).
-"""
-
 import sys
 
 if __package__ is None and not hasattr(sys, 'frozen'):
