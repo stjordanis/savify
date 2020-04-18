@@ -64,6 +64,8 @@ OPTIONS = {
     'f': ('-f', '--format', True, 'file format from downloaded song(s)', ['aac', 'flac', 'mp3', 'm4a', 'opus', 'vorbis',
                                                                           'wav']),
     'o': ('-o', '--output', True, 'output path to download song(s) to', []),
+    'g': ('-g', '--group', True, 'specify the output grouping, use variables, %artist%, %album% and %playlist%'
+                                 'separated by your os path delimiter. E.g. %artist%/%album%', [])
 }
 
 
@@ -129,6 +131,7 @@ def main(argv=None):
     quality = '0'
     download_format = 'mp3'
     output_path = utils.SAVE_PATH
+    group = ''
 
     for opt, arg in opts:
         if opt in OPTIONS['h']:
@@ -156,11 +159,13 @@ def main(argv=None):
             except FileNotFoundError:
                 print('Invalid output directory specified.')
                 sys.exit(2)
+        elif opt in OPTIONS['g']:
+            group = arg
 
     if len(query) == 0:
         info()
         print(f'No search query was given.')
         sys.exit(2)
 
-    Savify(query, query_type, quality, download_format, output_path).run()
+    Savify(query, query_type, quality, download_format, output_path, group).run()
 

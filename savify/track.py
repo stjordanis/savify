@@ -13,6 +13,10 @@ class Track:
         self._track_number = spotify_data['track_number']
         self._album_track_count = spotify_data['album']['total_tracks']
         self._uri = spotify_data['uri']
+        if 'playlist' in spotify_data:
+            self._playlist = spotify_data['playlist']
+        else:
+            self._playlist = ''
 
     @property
     def album_name(self):
@@ -57,6 +61,10 @@ class Track:
     @property
     def uri(self):
         return self._uri
+
+    @property
+    def playlist(self):
+        return self._playlist
 
     def __repr__(self) -> str:
         return f'{self._id}\nName: {self._name}\nArtists: {self.artist_names}\nAlbum: {self._album_name}\n' \

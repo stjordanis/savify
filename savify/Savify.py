@@ -11,14 +11,31 @@ from . import utils
 from . import spotify
 
 
+class Type:
+    TRACK = 'track'
+    ALBUM = 'album'
+    PLAYLIST = 'playlist'
+
+
+class Platform:
+    SPOTIFY = 'spotify'
+    YOUTUBE = 'youtube'
+
+
+class Format:
+    MP3 = 'mp3'
+
+
 class Savify:
-    def __init__(self, query, query_type, quality, download_format, output_path):
+    def __init__(self, query, query_type=Type.TRACK, quality='0',
+                 download_format=Format.MP3, output_path=utils.SAVE_PATH, group=''):
         self.query = query
         self.query_type = query_type
         self.quality = quality
         self.download_format = download_format
         self.output_path = output_path
         self.queue = []
+        self.group = group
 
     def add_track(self, track):
         self.queue.append(track)
@@ -29,8 +46,12 @@ class Savify:
             if utils.check_ffmpeg():
                 start_time = time.time()
                 with ThreadPool(cpu_count())as threads:
-                    jobs = threads.starmap(download_task, zip(self.queue, repeat(self.quality),
-                                                              repeat(self.download_format), repeat(self.output_path)))
+                    jobs = threads.starmap(download_task, zip(self.queue,
+                                                              repeat(self.quality),
+                                                              repeat(self.download_format),
+                                                              repeat(self.output_path),
+                                                              repeat(self.group)
+                                                              ))
                     failed_jobs = []
                     # look -> https://github.com/Linuxleech/flac-to-mp3/blob/master/flac_to_mp3
 
@@ -77,19 +98,3 @@ class Savify:
         if result is not None:
             for track in result:
                 self.add_track(track)
-
-
-
-class Type:
-    TRACK = 'track'
-    ALBUM = 'album'
-    PLAYLIST = 'playlist'
-
-
-class Platform:
-    SPOTIFY = 'spotify'
-    YOUTUBE = 'youtube'
-
-
-class Format:
-    MP3 = 'mp3'

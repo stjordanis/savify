@@ -7,10 +7,20 @@ from .track import Track
 from . import utils
 
 
-def download_task(track: Track, quality, download_format, output_path):
+def parse_group(track, group):
+    group = group.replace('%artist%', track.artist_names[0])
+    group = group.replace('%album%', track.album_name)
+    group = group.replace('%playlist%', track.playlist)
+    if group == '':
+        return f'/_UNGROUPED/'
+    else:
+        return f'/{group}/'
+
+
+def download_task(track: Track, quality, download_format, output_path, group):
     logger = utils.Logger()
     query = str(track) + ' (AUDIO)'
-    output_path += f'/{track.artist_names[0]}/{track.album_name}/{track.artist_names[0]} - ' \
+    output_path += f'{parse_group(track, group)}{track.artist_names[0]} - ' \
                    f'{track.name}.{download_format}'
     utils.create_dir(output_path)
     options = {

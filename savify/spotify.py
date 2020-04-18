@@ -44,5 +44,7 @@ def pack_album(album):
 def pack_playlist(playlist):
     tracks = []
     for track in playlist['tracks']['items']:
-        tracks.append(Track(track['track']))
+        track_data = track['track']
+        track_data['playlist'] = playlist['name']
+        tracks.append(Track(track_data))
     return tracks
