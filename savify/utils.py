@@ -5,7 +5,9 @@ import uuid
 from pathlib import Path
 from urllib.request import urlretrieve
 
-TEMP_PATH = './data/temp/'
+DATA_PATH = os.getenv('APPDATA') + '/Savify'
+TEMP_PATH = DATA_PATH + '/temp'
+SAVE_PATH = DATA_PATH + '/downloads'
 
 
 def clean(path):

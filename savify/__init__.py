@@ -45,13 +45,13 @@ __docformat__ = 'restructuredtext en'
 
 __all__ = ('main', 'Savify')
 
-
 import getopt
 import sys
 import datetime
 
 from . import spotify
 from .Savify import Savify
+from . import utils
 
 INFO = f'Savify version {__version__} Copyright (c) 2018-{datetime.datetime.now().year} {__author__}\n' \
        f'Usage: Savify.py -q query [options]\nFor help:\n\t-h\t--help\tshow available options'
@@ -109,7 +109,7 @@ def check_arg(arg, option):
 
 def main(argv=None):
     if argv is None:
-        argv =sys.argv[1:]
+        argv = sys.argv[1:]
 
     if len(argv) == 0:
         info()
@@ -128,7 +128,7 @@ def main(argv=None):
     query_type = 'track'
     quality = '0'
     download_format = 'mp3'
-    output_path = './Savify Downloads/'
+    output_path = utils.SAVE_PATH
 
     for opt, arg in opts:
         if opt in OPTIONS['h']:
@@ -161,15 +161,15 @@ def main(argv=None):
     run(query, query_type, quality, download_format, output_path)
 
 
-def run(query, query_type='track', quality='0', download_format='mp3', output_path='./Savify Downloads/'):
-    dm = Savify(quality, download_format, output_path)
+def run(query, query_type='track', quality='0', download_format='mp3', output_path=utils.SAVE_PATH):
+    savify = Savify(quality, download_format, output_path)
     if query_type == 'track':
-        dm.add_track(spotify.search(query, query_type='track'))
+        savify.add_track(spotify.search(query, query_type='track'))
     elif query_type == 'album':
         for track in spotify.search(query, query_type='album'):
-            dm.add_track(track)
+            savify.add_track(track)
     elif query_type == 'playlist':
         for track in spotify.search(query, query_type='playlist'):
-            dm.add_track(track)
+            savify.add_track(track)
 
-    dm.run()
+    savify.run()
