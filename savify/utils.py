@@ -5,9 +5,9 @@ import uuid
 from pathlib import Path
 from urllib.request import urlretrieve
 
-DATA_PATH = os.getenv('APPDATA') + '/Savify'
-TEMP_PATH = DATA_PATH + '/temp'
-SAVE_PATH = DATA_PATH + '/downloads'
+DATA_PATH = os.path.join(os.getenv('APPDATA'), 'Savify')
+TEMP_PATH = os.path.join(DATA_PATH, 'temp')
+SAVE_PATH = os.path.join(DATA_PATH, 'downloads')
 
 
 def clean(path):
@@ -43,8 +43,8 @@ class Logger(object):
         return print('[INFO] ' + msg)
 
 
-def get_cover_art(url, extension='.jpg'):
-    file_path = TEMP_PATH + str(uuid.uuid1()) + extension
+def get_cover_art(url, extension='jpg'):
+    file_path = f'{TEMP_PATH}/{str(uuid.uuid1())}.{extension}'
     create_dir(file_path)
     urlretrieve(url, file_path)
 

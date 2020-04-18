@@ -15,7 +15,7 @@ def download_task(track: Track, quality, download_format, output_path):
     utils.create_dir(output_path)
     options = {
         'format': 'bestaudio/best',
-        'outtmpl': f'{utils.TEMP_PATH}{str(uuid.uuid1())}.%(ext)s',
+        'outtmpl': f'{utils.TEMP_PATH}/{str(uuid.uuid1())}.%(ext)s',
         'restrictfilenames': True,
         'ignoreerrors': True,
         'nooverwrites': True,
