@@ -1,13 +1,9 @@
-__author__ = 'Laurence Rawlings'
-
 import time
 from itertools import repeat
 from multiprocessing import cpu_count
 from multiprocessing.pool import ThreadPool
 
-from .downloader import download_spotify
-from .downloader import TEMP_PATH
-from .downloader import check_ffmpeg
+from .download_task import download_task
 from . import utils
 
 
@@ -22,11 +18,11 @@ class Savify:
         self.queue.append(track)
 
     def run(self):
-        if check_ffmpeg():
+        if utils.check_ffmpeg():
             start_time = time.time()
             with ThreadPool(cpu_count())as threads:
-                jobs = threads.starmap(download_spotify, zip(self.queue, repeat(self.quality),
-                                                             repeat(self.download_format), repeat(self.output_path)))
+                jobs = threads.starmap(download_task, zip(self.queue, repeat(self.quality),
+                                                          repeat(self.download_format), repeat(self.output_path)))
                 failed_jobs = []
                 # look -> https://github.com/Linuxleech/flac-to-mp3/blob/master/flac_to_mp3
 
@@ -41,7 +37,7 @@ class Savify:
                             log.write(f'{failed_job.timestamp} args:{failed_job.args}')
                 #                      f'return code:{failed_job.returncode}\n')
 
-                utils.clean(TEMP_PATH)
+                utils.clean(utils.TEMP_PATH)
                 print(message)
                 # look -> https://www.geeksforgeeks.org/desktop-notifier-python/
 

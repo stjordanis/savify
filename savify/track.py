@@ -1,7 +1,4 @@
-__author__ = 'Laurence Rawlings'
-
-
-class SpotifyTrack:
+class Track:
     def __init__(self, spotify_data):
         self._data = spotify_data
 
