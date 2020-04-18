@@ -2,7 +2,7 @@
   
 [![Savify](images/savify-banner.png)](https://laurencerawlings.github.io/savify/)
 
-[![Discord](https://img.shields.io/discord/379302964134674433?style=for-the-badge)](https://discordapp.com/invite/hZwVNqP) [![GitHub stars](https://img.shields.io/github/stars/laurencerawlings/savify?style=for-the-badge)](https://github.com/laurencerawlings/savify/stargazers) [![GitHub contributors](https://img.shields.io/github/contributors/laurencerawlings/savify?style=for-the-badge)](https://github.com/laurencerawlings/savify/graphs/contributors) [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/laurencerawlings/savify?include_prereleases&style=for-the-badge)](https://github.com/laurencerawlings/savify/releases) [![GitHub Pre-Releases](https://img.shields.io/github/downloads-pre/laurencerawlings/savify/latest/total?style=for-the-badge)](#download-for-windows)
+[![Discord](https://img.shields.io/discord/379302964134674433?style=for-the-badge)](https://discordapp.com/invite/SPuPEda) [![GitHub stars](https://img.shields.io/github/stars/laurencerawlings/savify?style=for-the-badge)](https://github.com/laurencerawlings/savify/stargazers) [![GitHub contributors](https://img.shields.io/github/contributors/laurencerawlings/savify?style=for-the-badge)](https://github.com/laurencerawlings/savify/graphs/contributors) [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/laurencerawlings/savify?include_prereleases&style=for-the-badge)](https://github.com/laurencerawlings/savify/releases) [![GitHub Pre-Releases](https://img.shields.io/github/downloads-pre/laurencerawlings/savify/latest/total?style=for-the-badge)](#download-for-windows)
 
 </div>
 
