@@ -1,8 +1,10 @@
 import time
-import validators
 from itertools import repeat
 from multiprocessing import cpu_count
 from multiprocessing.pool import ThreadPool
+
+import validators
+import tldextract
 
 from .download_task import download_task
 from . import utils
@@ -51,10 +53,17 @@ class Savify:
             print('No tracks were added to the queue.')
 
     def parse_query(self):
+        result = None
         if validators.url(self.query):
-            pass
+            domain = tldextract.extract(self.query).domain
+            if domain == Platform.SPOTIFY:
+                result = spotify.link(self.query)
+            elif domain == Platform.YOUTUBE:
+                pass
+
+            if result is None:
+                print('The link is either not supported or returned no results.')
         else:
-            result = None
             if self.query_type == Type.TRACK:
                 result = spotify.search(self.query, query_type=Type.TRACK)
             elif self.query_type == Type.ALBUM:
@@ -62,11 +71,13 @@ class Savify:
             elif self.query_type == Type.PLAYLIST:
                 result = spotify.search(self.query, query_type=Type.PLAYLIST)
 
-            if result is not None:
-                for track in result:
-                    self.add_track(track)
-            else:
+            if result is None:
                 print('No results were returned from the given query.')
+
+        if result is not None:
+            for track in result:
+                self.add_track(track)
+
 
 
 class Type:

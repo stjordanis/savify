@@ -8,3 +8,4 @@ spotipy~=2.11.1
 youtube-dl==2020.3.24
 setuptools~=41.2.0
 validators~=0.14.3
+tldextract~=2.2.2
