@@ -150,8 +150,12 @@ def main(argv=None):
             if check_arg(arg, 'f'):
                 download_format = arg
         elif opt in OPTIONS['o']:
-            if check_arg(arg, 'o'):
+            try:
+                utils.create_dir(arg)
                 output_path = arg
+            except FileNotFoundError:
+                print('Invalid output directory specified.')
+                sys.exit(2)
 
     if len(query) == 0:
         info()
