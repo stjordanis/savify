@@ -9,7 +9,7 @@ def search(query, query_type='track'):
     results = sp.search(q=query, limit=20, type=query_type)
     if len(results[query_type + 's']['items']) > 0:
         if query_type == 'track':
-            return Track(results[query_type + 's']['items'][0])
+            return [Track(results[query_type + 's']['items'][0])]
         elif query_type == 'album':
             tracks = []
             album = sp.album(results['album' + 's']['items'][0]['id'])

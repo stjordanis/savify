@@ -162,18 +162,5 @@ def main(argv=None):
         print(f'No search query was given.')
         sys.exit(2)
 
-    run(query, query_type, quality, download_format, output_path)
+    Savify(query, query_type, quality, download_format, output_path).run()
 
-
-def run(query, query_type='track', quality='0', download_format='mp3', output_path=utils.SAVE_PATH):
-    savify = Savify(quality, download_format, output_path)
-    if query_type == 'track':
-        savify.add_track(spotify.search(query, query_type='track'))
-    elif query_type == 'album':
-        for track in spotify.search(query, query_type='album'):
-            savify.add_track(track)
-    elif query_type == 'playlist':
-        for track in spotify.search(query, query_type='playlist'):
-            savify.add_track(track)
-
-    savify.run()
