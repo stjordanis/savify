@@ -22,6 +22,11 @@ def download_task(track: Track, quality, download_format, output_path, group):
     query = str(track) + ' (AUDIO)'
     output_path += f'{parse_group(track, group)}{track.artist_names[0]} - ' \
                    f'{track.name}.{download_format}'
+
+    if utils.check_file(output_path):
+        print('Song already downloaded. Skipping...')
+        return
+
     utils.create_dir(output_path)
     options = {
         'format': 'bestaudio/best',
