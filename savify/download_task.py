@@ -69,10 +69,11 @@ def download_task(track: Track, quality, download_format, output_path, group):
         inputs={logger.final_destination: None, cover_art: None, },
         outputs={output_path: '-loglevel quiet -hide_banner -y -map 0:0 -map 1:0 -id3v2_version 3 '
                               '-metadata:s:v title="Album cover" -metadata:s:v comment="Cover (front)" '
-                              '-af "silenceremove=start_periods=1:start_duration=1:start_threshold=-60dB:'
-                              'detection=peak,aformat=dblp,areverse,silenceremove=start_periods=1:'
-                              'start_duration=1:start_threshold=-60dB:'
-                              'detection=peak,aformat=dblp,areverse"'}
+                              #'-af "silenceremove=start_periods=1:start_duration=1:start_threshold=-60dB:'
+                              #'detection=peak,aformat=dblp,areverse,silenceremove=start_periods=1:'
+                              #'start_duration=1:start_threshold=-60dB:'
+                              #'detection=peak,aformat=dblp,areverse"'
+                 }
     )
 
     ffmpeg.run()
